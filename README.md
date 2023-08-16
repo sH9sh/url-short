@@ -19,7 +19,8 @@ YouÃ¢â‚¬â„¢ll start by editing this README file to learn how to edit a
 6. Go back to the **Source** page.
 
 ---
-"This is my change to the the readme file" - Conor Lynam
+"This is my change to the the readme file" -
+
 
 ## Create a file
 
