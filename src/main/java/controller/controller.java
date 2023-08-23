@@ -1,4 +1,10 @@
 package controller;
-//test
+// test
+// test 2 u
 public class controller {
+<<<<<<< Updated upstream
+
 }
+=======
+}
+>>>>>>> Stashed changes
