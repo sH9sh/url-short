@@ -12,7 +12,7 @@ YouÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ll start by editing this README file to
 
 1. Click **Source** on the left side.
 2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
+3. Click the **Edit** button..
 
 5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and youÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ll see the change you just made.
 6. Go back to the **Source** page.
