@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
 
-// @entity and @table creates the table in the database - 'bounty_url_table'
+// @entity and @table creates the table in the database - 'bounty_url_table'.
 @Entity
 @Table
 public class bounty_url_table {
