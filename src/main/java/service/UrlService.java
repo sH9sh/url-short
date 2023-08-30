@@ -1,23 +1,23 @@
 package service;
-import com.zinkworks.bountyhuntersurlshortener.model.bounty_url_table;
-import jakarta.transaction.Transactional;
+import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.RepositoryUrl;
 
-import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class urlService {
+public class UrlService {
 
 
+    private BountyUrlTable bountyUrlTable;
     private final RepositoryUrl repositoryUrl;    // creating object of RepositoryUrl class
 
 
     @Autowired      // used on properties, setters and constructors.
-                    // Autowires relationships between collaborating beans
-    public urlService(RepositoryUrl repositoryUrl){
+                    // Autowires relationships between collaborating beans. Injects dependencies into a class.
+    public UrlService(RepositoryUrl repositoryUrl){
 
         this.repositoryUrl = repositoryUrl;
     }
@@ -25,14 +25,18 @@ public class urlService {
     // Read or search all fields.
 
     // Creating a list of type 'bounty_url_table' to hold id, created date, original url and short url.
-    public List<bounty_url_table> getAllUrlInfo(){
+    public List<BountyUrlTable> getAllUrlInfo(){
         return repositoryUrl.findAll();      // returns all database info from the repository class.
     }
 
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
-    public void addNewUrl(bounty_url_table bountyUrlTable)
+    public void addNewUrl(String shortUrl)
     {
+        Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
+        if (shortenedUrl.isPresent()){
+            throw new IllegalStateException("short url already in use");
+        }
         repositoryUrl.save(bountyUrlTable);     // used pass along new data entries with id, created date, original url
                                                 // and short url to repository class.
     }
@@ -47,11 +51,7 @@ public class urlService {
     }
 
 
-    // Update
-    @Transactional      // only used for update. ensures integrity and consistency of data when making changes.
-    public void updateUrl(Long id, String original_url, String short_url, OffsetDateTime created_date){
 
-    }
 
 
     }

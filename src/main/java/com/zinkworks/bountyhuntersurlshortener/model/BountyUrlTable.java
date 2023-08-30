@@ -1,0 +1,79 @@
+package com.zinkworks.bountyhuntersurlshortener.model;
+
+import jakarta.persistence.*;
+
+import java.time.OffsetDateTime;
+
+// @entity and @table creates the table in the database - 'bounty_url_table'.
+@Entity
+@Table
+public class BountyUrlTable {       // renamed class name
+
+
+    // Declares primary key for ID column. Generates a sequence of id's for each url.
+    @Id
+    @SequenceGenerator(name="url_id_sequence", sequenceName = "url_id_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_id_sequence")
+    private Long id;
+    private String originalUrl;     // renamed properties without underscore (_)
+    private String shortUrl;
+    private OffsetDateTime createdDate;
+
+    // constructor
+    public BountyUrlTable(Long id, String originalUrl, String shortUrl, OffsetDateTime createdDate) {
+        this.id = id;
+        this.originalUrl = originalUrl;
+        this.shortUrl = shortUrl;
+        this.createdDate = createdDate;
+    }
+
+    // no arguments constructor
+    public BountyUrlTable() {
+    }
+
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOriginalUrl() {
+        return originalUrl;
+    }
+
+    public void setOriginalUrl(String originalUrl) {
+        this.originalUrl = originalUrl;
+    }
+
+    public String getShortUrl() {
+        return shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public OffsetDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(OffsetDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    // Displays on our webpage.
+    @Override
+    public String toString() {
+        return "bounty_url_table{" +
+                "id=" + id +
+                ", original_url='" + originalUrl + '\'' +
+                ", short_url='" + shortUrl + '\'' +
+                ", created_date=" + createdDate +
+                '}';
+    }
+}
+
+
