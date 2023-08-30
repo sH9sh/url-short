@@ -1,5 +1,6 @@
 package service;
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.RepositoryUrl;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class UrlService {
 
 
+    private EntityManager entityManager;
     private BountyUrlTable bountyUrlTable;
     private final RepositoryUrl repositoryUrl;    // creating object of RepositoryUrl class
 
@@ -31,8 +33,9 @@ public class UrlService {
 
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
-    public void addNewUrl(String shortUrl)
+    public void addNewUrl(String originalUrl)
     {
+
         Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
         if (shortenedUrl.isPresent()){
             throw new IllegalStateException("short url already in use");
@@ -40,6 +43,16 @@ public class UrlService {
         repositoryUrl.save(bountyUrlTable);     // used pass along new data entries with id, created date, original url
                                                 // and short url to repository class.
     }
+
+    public String getLongUrl(String shortUrl){
+        Optional<BountyUrlTable> shortUrlExists = repositoryUrl.findByShortUrl(shortUrl);
+        if(doesStudentExist(shortUrl)){
+            return null;
+        }
+
+    }
+
+
 
     // Delete
     public void deleteUrl(Long id){

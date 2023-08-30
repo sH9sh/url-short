@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface RepositoryUrl extends JpaRepository<BountyUrlTable, Long> {
     Optional<BountyUrlTable> findByShortUrl(String shortUrl);
 
+    boolean exists
+
 }
