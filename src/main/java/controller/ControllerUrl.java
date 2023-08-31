@@ -3,6 +3,7 @@ package controller;
 // test 2 u
 
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
+import exceptions.EmptyTablesException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class ControllerUrl {
 
     // Original_New
     @GetMapping
-    public List<BountyUrlTable> getUrl(){
+    public List<BountyUrlTable> getUrl() throws EmptyTablesException {
         return urlService.getAllUrlInfo();
     }
 
