@@ -38,6 +38,10 @@ public class UrlService {
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
     public void addNewUrl(String originalUrl) {
+        // Validate url
+        // if url is valid, check black list.
+        // if its not blacklisted, run Md5Hash
+
         MD5Hash(originalUrl);
 
         Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
@@ -72,7 +76,7 @@ public class UrlService {
 
 
 
-
+        // READ
         public String getOriginalUrl (String shortUrl){
 
             var entity = repositoryUrl.findByShortUrl(shortUrl)
