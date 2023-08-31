@@ -2,9 +2,7 @@ package Config;
 
 import com.zinkworks.bountyhuntersurlshortener.model.bounty_url_table;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import repository.Repository;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
