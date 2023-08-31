@@ -49,9 +49,9 @@ public class UrlService {
     }
 
     private static String MD5Hash(String originalUrl) {
-
-        MessageDigest md;
+        String finalShortUrl = "";
         try {
+            MessageDigest md;
             md = MessageDigest.getInstance("MD5"); // Create an instance of Message Digest. Message Digests are secure one-way hash functions
             // it outputs a fixed length hash value.
             // 'getInstance' returns a message digest object which implements the specified algorithm (md5)
@@ -61,24 +61,15 @@ public class UrlService {
             // digest() performs final hashing computations.
 
             String base64Encoded = Base64.getEncoder().encodeToString(md5Bytes);   // encodes the byte array 'md5Bytes' to base64
-            String finalShortUrl = base64Encoded.substring(0, 7);    // Substring of base64Encoded with first 7 characters
+            finalShortUrl = base64Encoded.substring(0, 7);    // Substring of base64Encoded with first 7 characters
 
-
-            return finalShortUrl;    // output the final short Url string
-        }
-        catch(NoSuchAlgorithmException e) {
-            e.printStackTrace();
-
-
-
-            return finalShortUrl;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-
-
         }
-        
+        return finalShortUrl;    // output the final short Url string
     }
+        
+
 
 
 
@@ -91,7 +82,7 @@ public class UrlService {
             return entity.getOriginalUrl();
         }
 
->>>>>>> 19c351dfd5a0156bc97cdada1c695bb614fbee25
+
 
         // Delete
         public void deleteUrl (Long id){
