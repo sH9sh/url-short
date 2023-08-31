@@ -64,21 +64,26 @@ public class UrlService {
             String base64Encoded = Base64.getEncoder().encodeToString(md5Bytes);   // encodes the byte array 'md5Bytes' to base64
             String finalShortUrl = base64Encoded.substring(0, 7);    // Substring of base64Encoded with first 7 characters
 
-            return finalShortUrl;
+            return finalShortUrl;    // output the final short Url string
         }
-        catch(NoSuchAlgorithmException e) {
+        catch(NoSuchAlgorithmException e) {     // catches errors if algorithm not available in given environment.
             e.printStackTrace();
 
-
-    }
-
-    public String getLongUrl(String shortUrl){
-        Optional<BountyUrlTable> shortUrlExists = repositoryUrl.findByShortUrl(shortUrl);
-        if((shortUrl)){
-            return null;
         }
 
-    }
+        public static String getOriginalUrl(String shortUrl){
+
+            Optional<BountyUrlTable> shortURL = repositoryUrl.findByShortUrl(shortUrl);
+
+            if(shortURL != null){
+                String originalURL = bountyUrlTable;
+                return originalURL;
+            }
+
+            else{
+                return null;
+            }
+        }
 
 
 
