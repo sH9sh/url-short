@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //import org.apache.commons.validator.routines.UrlValidator;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class ControllerUrl {
 
         if(originalUrl != null){
             //Retrieve Original URL from server
-            return ResponseEntity.ok(originalUrl);
+            return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build();
         }
         else{
             //Build Error Message
@@ -56,15 +57,15 @@ public class ControllerUrl {
         //Got the created Shorten URL from server
         String shortUrl = urlService.addNewUrl(original_url);
 
-        if(shortUrl != null){
-
-            //View the Created shorten URL
-            return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);
-        }
-
-        else {
+        if(shortUrl.isEmpty()){
             //Failed created shorten URL
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Shorten URL not created");
+        }
+
+
+        else {
+                //View the Created shorten URL
+                return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);
         }
 
 
