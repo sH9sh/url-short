@@ -2,6 +2,7 @@ package com.zinkworks.bountyhuntersurlshortener.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 // @entity and @table creates the table in the database - 'bounty_url_table'.
@@ -17,10 +18,10 @@ public class BountyUrlTable {       // renamed class name
     private Long id;
     private String originalUrl;     // renamed properties without underscore (_)
     private String shortUrl;
-    private OffsetDateTime createdDate;
+    private LocalDateTime createdDate;
 
     // constructor
-    public BountyUrlTable(Long id, String originalUrl, String shortUrl, OffsetDateTime createdDate) {
+    public BountyUrlTable(Long id, String originalUrl, String shortUrl, LocalDateTime createdDate) {
         this.id = id;
         this.originalUrl = originalUrl;
         this.shortUrl = shortUrl;
@@ -56,11 +57,11 @@ public class BountyUrlTable {       // renamed class name
         this.shortUrl = shortUrl;
     }
 
-    public OffsetDateTime getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(OffsetDateTime createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 

@@ -63,24 +63,32 @@ public class UrlService {
 
 
         // READ
-        public String getOriginalUrl (String shortUrl) throws UrlNotFoundException {
+        public String getOriginalUrl(String shortUrl) throws UrlNotFoundException {
 
             var entity = repositoryUrl.findByShortUrl(shortUrl)
                     .orElseThrow(() -> new UrlNotFoundException("No entity with " + shortUrl + " found."));
 
-
             return entity.getOriginalUrl();
+
         }
 
 
 
         // Delete
-        public void deleteUrl (Long id) throws UrlIdNotFoundException {
-            boolean exists = repositoryUrl.existsById(id);      // check if id being deleted is stored on database.
-            if (!exists) {
-                throw new UrlIdNotFoundException("Url with id " + id + " does not exist");
+        public boolean deleteUrl (String shortUrl) {
+
+            var entity = repositoryUrl.findByShortUrl(shortUrl)
+                    .orElseThrow(() -> new EntityNotFoundException("No entity with " + shortUrl + " found."));
+            Long id = entity.getId();
+            if(id != null){
+                repositoryUrl.deleteById(id);
+
+                return true;
             }
-            repositoryUrl.deleteById(id);
+           else {
+               return false;
+            }
+
         }
 
 
