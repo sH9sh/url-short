@@ -11,6 +11,7 @@ import repository.RepositoryUrl;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -42,21 +43,28 @@ public class UrlService {
 
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
-    public void addNewUrl(String originalUrl) {
+    public String addNewUrl(String originalUrl) {
 
-        MD5Hash.MD5HashingMethod(originalUrl);
+        String createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
+        LocalDateTime createdDate = LocalDateTime.now();
+
+        BountyUrlTable newRecord = new BountyUrlTable();
+
+        newRecord.setShortUrl(createdShortUrl);
+        newRecord.setOriginalUrl(originalUrl);
+        newRecord.setCreatedDate(createdDate);
         // Validate url
         // if url is valid, check black list.
         // if its not blacklisted, run Md5Hash
 
 
 
-        Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
-        if (shortenedUrl.isPresent()) {
-            throw new IllegalStateException("short url already in use");
-        }
-        repositoryUrl.save(bountyUrlTable);     // used pass along new data entries with id, created date, original url
-        // and short url to repository class.
+//        Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
+//        if (shortenedUrl.isPresent()) {
+//            throw new IllegalStateException("short url already in use");
+//        }
+        repositoryUrl.save(newRecord);
+        return createdShortUrl;
     }
         
 
