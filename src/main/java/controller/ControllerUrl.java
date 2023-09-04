@@ -1,99 +1,58 @@
 package controller;
 
-import com.zinkworks.bountyhuntersurlshortener.model.ServiceUrl;
-import com.zinkworks.bountyhuntersurlshortener.UrlShortenerApplication;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.apache.commons.validator.routines.UrlValidator;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping( path = "api/v1/BountyURL")
+@RequestMapping(path = "api/v1/BountyURL")
 public class ControllerUrl {
 
-
-    //Variable declaration from ServiceUrl
-    private final UrlService urlService;
-
+    private final UrlService urlService;    //Variable declaration from ServiceUrl
 
     @Autowired
-    //Constructor class
-    public ControllerUrl(UrlService urlService) {
+
+    public ControllerUrl(UrlService urlService) {    //Constructor class
         this.urlService = serviceUrl;
     }
 
-
-
-    @GetMapping("{short_url}")
-
+    @GetMapping("{short_url}")    //GET Method for retrieve information from a server.
     //ResponseEntity<String> is class that represent an HTTP response, In here Type of content is String
-    //GET Method for retrieve information from a server.
-    public ResponseEntity<String> getOriginalUrl(@PathVariable String short_url){
+    public ResponseEntity<String> getOriginalUrl(@PathVariable String short_url) {
 
-
-        //Got the Original URL from the ServiceUrl Class.
-        String originalUrl = urlService.getOriginalUrl(short_url);
-
-        if(originalUrl != null){
-            //Retrieve Original URL from server
-            return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build();
+        String originalUrl = urlService.getOriginalUrl(short_url);    //Got the Original URL from the ServiceUrl Class.
+        if (originalUrl != null) {
+            return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build(); //Retrieve Original URL from server
         }
-        else{
-            //Build Error Message
-            return ResponseEntity.notFound().build();
-        }
-
-    }
-    @PostMapping
-    //To send Original URL to server for the creating shorten URL
-    public ResponseEntity<String>  createShortUrl(@RequestBody String original_url ){
-
-        //Got the created Shorten URL from server
-        String shortUrl = urlService.addNewUrl(original_url);
-
-        if(shortUrl.isEmpty()){
-            //Failed created shorten URL
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Shorten URL not created");
-        }
-
-
         else {
-                //View the Created shorten URL
-                return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);
+            return ResponseEntity.notFound().build();   //Build Error Message
         }
-
-
-
     }
 
-    @DeleteMapping("{short_url}")
+    @PostMapping    //To send Original URL to server for the creating shorten URL
+    public ResponseEntity<String> createShortUrl(@RequestBody String original_url) {
 
-    //Delete Record from the database
+        String shortUrl = urlService.addNewUrl(original_url);  //Got the created Shorten URL from server
+        if (shortUrl.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Shorten URL not created");       //Failed created shorten URL
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);            //View the Created shorten URL
+        }
+    }
+
+    @DeleteMapping("{short_url}")    //Delete Record from the database
     public ResponseEntity<String> deleteShortUrl(@PathVariable String short_url) {
 
-        //The URL to delete passed to server and got the responses.
-        boolean deleted = urlService.deleteUrl(short_url);
-
-
+        boolean deleted = urlService.deleteUrl(short_url);   //The URL to delete passed to server and got the responses.
         if (deleted) {
-            //Delete successful completed.
-            return ResponseEntity.ok("Short URL deleted");
-
-        } else {
-            //Build error message
-            return ResponseEntity.notFound().build();
-
+            return ResponseEntity.ok("Short URL deleted");     //Delete successful completed.
         }
-
+        else {
+            return ResponseEntity.notFound().build();       //Build error message
+        }
     }
-
-
-
-
 }
