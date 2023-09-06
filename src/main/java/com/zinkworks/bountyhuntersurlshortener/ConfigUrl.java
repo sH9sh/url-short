@@ -29,13 +29,13 @@ public class ConfigUrl {
             BountyUrlTable url1 = new BountyUrlTable(
                     1l,
                     "Test_1_Original_Url",
-                    "absntu1243",
+                    "",
                     LocalDateTime.of(2023,10,12,10,10,2)
             );
             BountyUrlTable url2 = new BountyUrlTable(
                     2l,
                     "Test_2_Original_Url",
-                    "abcdef1234",
+                    "",
                     LocalDateTime.of(2023, 12, 23, 9, 0, 0)
 
             );
@@ -43,7 +43,7 @@ public class ConfigUrl {
             BountyUrlTable url3 = new BountyUrlTable(
                     3l,
                     "Test_3_Original_Url",
-                    "mkjhf1234",
+                    "",
                     LocalDateTime.of(2019, 1, 20, 12, 0, 0)
 
             );

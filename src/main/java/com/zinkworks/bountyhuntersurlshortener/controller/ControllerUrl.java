@@ -1,6 +1,8 @@
 package com.zinkworks.bountyhuntersurlshortener.controller;
 
 
+import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.zinkworks.bountyhuntersurlshortener.service.UrlService;
 //import org.apache.commons.validator.routines.UrlValidator;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 
 @RestController
@@ -50,7 +53,7 @@ public class ControllerUrl {
     }
     @PostMapping
 //To send Original URL to server for the creating shorten URL
-    public ResponseEntity<String> createShortUrl(@RequestBody String original_url ){
+    public ResponseEntity<String> createShortUrl(@RequestBody String original_url ) throws MalformedURLException, BlackListedUrlException, InvalidUrlException {
 
 //Got the created Shorten URL from server
         String shortUrl = urlService.addNewUrl(original_url);
