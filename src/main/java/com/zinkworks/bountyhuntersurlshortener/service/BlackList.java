@@ -10,7 +10,7 @@ public class BlackList {
     public static List<String> blackList = List.of(
             "https://www.tiktok.com/en/",
             "https://truthsocial.com/?",
-            "https://www.youtube.com/"
+            "youtube"
     );
 
 

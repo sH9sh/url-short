@@ -4,6 +4,7 @@ package com.zinkworks.bountyhuntersurlshortener.controller;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
+import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import com.zinkworks.bountyhuntersurlshortener.service.UrlService;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequestMapping( path = "api/v1/BountyURL")
@@ -21,12 +23,14 @@ public class ControllerUrl {
 
     //Variable declaration from ServiceUrl
     private final UrlService urlService;
+    private final RepositoryUrl repositoryUrl;
 
 
     @Autowired
 //Constructor class
-    public ControllerUrl(UrlService urlService) {
+    public ControllerUrl(UrlService urlService, RepositoryUrl repositoryUrl) {
         this.urlService = urlService;
+        this.repositoryUrl = repositoryUrl;
     }
 
 
@@ -38,15 +42,15 @@ public class ControllerUrl {
     public ResponseEntity<String> getOriginalUrl(@PathVariable String shortUrl) throws UrlNotFoundException {
 
 
-//Got the Original URL from the ServiceUrl Class.
+        //Got the Original URL from the ServiceUrl Class.
         String originalUrl = urlService.findOriginalUrl(shortUrl);
 
         if(originalUrl != null){
-//Retrieve Original URL from server
+            //Retrieve Original URL from server
             return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build();
         }
         else{
-//Build Error Message
+            //Build Error Message
             return ResponseEntity.notFound().build();
         }
 
@@ -73,25 +77,10 @@ public class ControllerUrl {
 
     }
 
-    @DeleteMapping("{short_url}")
-
-//Delete Record from the database
-    public ResponseEntity<String> deleteShortUrl(@PathVariable String shortUrl) {
-
-//The URL to delete passed to server and got the responses.
-        boolean deleted = urlService.deleteUrl(shortUrl);
-
-
-        if (deleted) {
-//Delete successful completed.
-            return ResponseEntity.ok("Short URL deleted");
-
-        } else {
-//Build error message
-            return ResponseEntity.notFound().build();
-
-        }
-
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUrlById(@PathVariable("id") Long id){
+        repositoryUrl.deleteById(id);
     }
 
 

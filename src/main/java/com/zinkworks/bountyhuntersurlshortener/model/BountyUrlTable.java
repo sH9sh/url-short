@@ -1,6 +1,7 @@
 package com.zinkworks.bountyhuntersurlshortener.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;

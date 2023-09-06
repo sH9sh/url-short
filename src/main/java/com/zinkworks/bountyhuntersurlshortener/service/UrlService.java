@@ -91,21 +91,5 @@ public class UrlService {
     }
 
 
-    // Delete
-    public boolean deleteUrl(String shortUrl) {
-
-        var entity = repositoryUrl.findByShortUrl(shortUrl)
-                .orElseThrow(() -> new EntityNotFoundException("No entity with " + shortUrl + " found."));
-        Long id = entity.getId();
-        if (id != null) {
-            repositoryUrl.deleteById(id);
-
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
 
 }
