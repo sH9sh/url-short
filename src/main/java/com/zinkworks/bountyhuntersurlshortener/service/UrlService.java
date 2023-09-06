@@ -1,11 +1,11 @@
 package com.zinkworks.bountyhuntersurlshortener.service;
 
-import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
+import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
+import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.List;
 public class UrlService {
 
 
-    private BountyUrlTable bountyUrlTable;
     private final RepositoryUrl repositoryUrl;    // creating object of RepositoryUrl class
+    private BountyUrlTable bountyUrlTable;
 
 
     @Autowired      // used on properties, setters and constructors.
