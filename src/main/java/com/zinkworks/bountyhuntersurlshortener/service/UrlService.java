@@ -1,12 +1,16 @@
 package com.zinkworks.bountyhuntersurlshortener.service;
 
-import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
-import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,8 +19,8 @@ import java.util.List;
 public class UrlService {
 
 
-    private final RepositoryUrl repositoryUrl;    // creating object of RepositoryUrl class
     private BountyUrlTable bountyUrlTable;
+    private final RepositoryUrl repositoryUrl;    // creating object of RepositoryUrl class
 
 
     @Autowired      // used on properties, setters and constructors.
@@ -35,32 +39,49 @@ public class UrlService {
 
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
-    public String addNewUrl(String originalUrl) {
+    public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException {
 
-        String createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
-        LocalDateTime createdDate = LocalDateTime.now();
+        boolean blackList = BlackList.checkBlackList(originalUrl);
+        String createdShortUrl = "";
+        if (UrlValiditation.isValid(originalUrl)) {
+            if (blackList) {
+                throw new BlackListedUrlException("The url you entered is on our blacklist.");
+            }
+            else{
+                createdShortUrl = UriComponentsBuilder.fromHttpUrl(originalUrl)
+                        .replaceQuery(null)
+                        .build()
+                        .toUriString();
 
-        BountyUrlTable newRecord = new BountyUrlTable();
+                createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
+                LocalDateTime createdDate = LocalDateTime.now();
 
-        newRecord.setShortUrl(createdShortUrl);
-        newRecord.setOriginalUrl(originalUrl);
-        newRecord.setCreatedDate(createdDate);
-        // Validate url
-        // if url is valid, check black list.
-        // if its not blacklisted, run Md5Hash
+                BountyUrlTable newRecord = new BountyUrlTable();
+
+                newRecord.setShortUrl(createdShortUrl);
+                newRecord.setOriginalUrl(originalUrl);
+                newRecord.setCreatedDate(createdDate);
+                // Validate url
+                // if url is valid, check black list.
+                // if its not blacklisted, run Md5Hash
 
 
 //        Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
 //        if (shortenedUrl.isPresent()) {
 //            throw new IllegalStateException("short url already in use");
 //        }
-        repositoryUrl.save(newRecord);
+                repositoryUrl.save(newRecord);
+            }
+        }
+        else{
+            throw new InvalidUrlException("The url you entered is invalid");
+        }
         return createdShortUrl;
     }
 
 
     // READ
-    public String findOriginalUrl(String shortUrl) throws UrlNotFoundException {
+    public String getOriginalUrl(String shortUrl) throws UrlNotFoundException {
 
         var entity = repositoryUrl.findByShortUrl(shortUrl)
                 .orElseThrow(() -> new UrlNotFoundException("No entity with " + shortUrl + " found."));
