@@ -1,4 +1,4 @@
-package service;
+package com.zinkworks.bountyhuntersurlshortener.service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

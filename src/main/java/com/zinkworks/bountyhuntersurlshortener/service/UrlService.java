@@ -1,22 +1,14 @@
-package service;
+package com.zinkworks.bountyhuntersurlshortener.service;
+
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
-import exceptions.EmptyTablesException;
-import exceptions.UrlIdNotFoundException;
-import exceptions.UrlNotFoundException;
-import jakarta.persistence.EntityManager;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.RepositoryUrl;
+import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
-
-
 
 
 @Service
@@ -58,7 +50,6 @@ public class UrlService {
         // if its not blacklisted, run Md5Hash
 
 
-
 //        Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
 //        if (shortenedUrl.isPresent()) {
 //            throw new IllegalStateException("short url already in use");
@@ -66,39 +57,34 @@ public class UrlService {
         repositoryUrl.save(newRecord);
         return createdShortUrl;
     }
-        
 
 
+    // READ
+    public String getOriginalUrl(String shortUrl) throws UrlNotFoundException {
 
-        // READ
-        public String getOriginalUrl(String shortUrl) throws UrlNotFoundException {
+        var entity = repositoryUrl.findByShortUrl(shortUrl)
+                .orElseThrow(() -> new UrlNotFoundException("No entity with " + shortUrl + " found."));
 
-            var entity = repositoryUrl.findByShortUrl(shortUrl)
-                    .orElseThrow(() -> new UrlNotFoundException("No entity with " + shortUrl + " found."));
+        return entity.getOriginalUrl();
 
-            return entity.getOriginalUrl();
+    }
 
+
+    // Delete
+    public boolean deleteUrl(String shortUrl) {
+
+        var entity = repositoryUrl.findByShortUrl(shortUrl)
+                .orElseThrow(() -> new EntityNotFoundException("No entity with " + shortUrl + " found."));
+        Long id = entity.getId();
+        if (id != null) {
+            repositoryUrl.deleteById(id);
+
+            return true;
+        } else {
+            return false;
         }
 
-
-
-        // Delete
-        public boolean deleteUrl (String shortUrl) {
-
-            var entity = repositoryUrl.findByShortUrl(shortUrl)
-                    .orElseThrow(() -> new EntityNotFoundException("No entity with " + shortUrl + " found."));
-            Long id = entity.getId();
-            if(id != null){
-                repositoryUrl.deleteById(id);
-
-                return true;
-            }
-           else {
-               return false;
-            }
-
-        }
-
+    }
 
 
 }

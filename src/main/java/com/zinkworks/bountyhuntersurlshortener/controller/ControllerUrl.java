@@ -1,17 +1,15 @@
-package com.zinkworks.bountyhuntersurlshortener.model;
+package com.zinkworks.bountyhuntersurlshortener.controller;
 
 
-import exceptions.UrlNotFoundException;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.UrlService;
+import com.zinkworks.bountyhuntersurlshortener.service.UrlService;
 //import org.apache.commons.validator.routines.UrlValidator;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping( path = "api/v1/BountyURL")
