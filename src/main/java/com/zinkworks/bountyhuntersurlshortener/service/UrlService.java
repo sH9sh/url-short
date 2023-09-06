@@ -60,7 +60,7 @@ public class UrlService {
 
 
     // READ
-    public String getOriginalUrl(String shortUrl) throws UrlNotFoundException {
+    public String findOriginalUrl(String shortUrl) throws UrlNotFoundException {
 
         var entity = repositoryUrl.findByShortUrl(shortUrl)
                 .orElseThrow(() -> new UrlNotFoundException("No entity with " + shortUrl + " found."));

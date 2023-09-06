@@ -36,7 +36,7 @@ public class ControllerUrl {
 
 
 //Got the Original URL from the ServiceUrl Class.
-        String originalUrl = urlService.getOriginalUrl(shortUrl);
+        String originalUrl = urlService.findOriginalUrl(shortUrl);
 
         if(originalUrl != null){
 //Retrieve Original URL from server
