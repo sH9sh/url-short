@@ -54,10 +54,10 @@ public class UrlService {
                         .toUriString();
 
                 createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
+
                 LocalDateTime createdDate = LocalDateTime.now();
 
                 BountyUrlTable newRecord = new BountyUrlTable();
-
                 newRecord.setShortUrl(createdShortUrl);
                 newRecord.setOriginalUrl(originalUrl);
                 newRecord.setCreatedDate(createdDate);
