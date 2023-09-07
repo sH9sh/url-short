@@ -2,17 +2,19 @@ package com.zinkworks.bountyhuntersurlshortener.service;
 
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
-import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
+import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
+import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.zinkworks.bountyhuntersurlshortener.service.BlackList.checkBlackList;
 
 
 @Service
@@ -39,9 +41,9 @@ public class UrlService {
 
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
-    public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException {
+    public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException, FileNotFoundException {
 
-        boolean blackList = BlackList.checkBlackList(originalUrl);
+        boolean blackList = checkBlackList(originalUrl);
         String createdShortUrl = "";
         if (UrlValiditation.isValid(originalUrl)) {
             if (blackList) {

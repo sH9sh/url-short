@@ -5,16 +5,15 @@ import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlExceptio
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
+import com.zinkworks.bountyhuntersurlshortener.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.zinkworks.bountyhuntersurlshortener.service.UrlService;
-//import org.apache.commons.validator.routines.UrlValidator;
 
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.util.UUID;
 
 @RestController
 @RequestMapping( path = "api/v1/BountyURL")
@@ -57,7 +56,7 @@ public class ControllerUrl {
     }
     @PostMapping
 //To send Original URL to server for the creating shorten URL
-    public ResponseEntity<String> createShortUrl(@RequestBody String original_url ) throws MalformedURLException, BlackListedUrlException, InvalidUrlException {
+    public ResponseEntity<String> createShortUrl(@RequestBody String original_url ) throws MalformedURLException, BlackListedUrlException, InvalidUrlException, FileNotFoundException {
 
 //Got the created Shorten URL from server
         String shortUrl = urlService.addNewUrl(original_url);
