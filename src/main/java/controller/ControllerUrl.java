@@ -15,7 +15,7 @@ public class ControllerUrl {
     private final UrlService urlService;
     private final RepositoryUrl repositoryUrl;
 
-    @Autowired
+    
     public ControllerUrl(UrlService urlService, RepositoryUrl repositoryUrl) {
         this.repositoryUrl = repositoryUrl;
         this.urlService = serviceUrl;
