@@ -8,22 +8,10 @@ import java.util.Scanner;
 
 public class BlackList {
 
-//    public static List<String> blackList = List.of(
-//            "https://www.tiktok.com/en/",
-//            "https://truthsocial.com/?",
-//            "youtube"
-//    );
 
-
-//    public static boolean checkBlackList(String originalUrl) throws BlackListedUrlException {
-//
-//        return blackList.contains(originalUrl);
-//    }
-
-
-    public static boolean checkBlackList(String originalURL) throws FileNotFoundException {
+    public static boolean checkBlackList(String originalURL) throws FileNotFoundException{
         List<String> blackList = new ArrayList<>();
-        Scanner scnr = new Scanner(new FileReader("C:\\Users\\JessicaHoey\\Downloads\\urls.txt"));
+        Scanner scnr = new Scanner(new FileReader("urls.txt"));
         String str;
         while (scnr.hasNext()) {
             str = scnr.next();
@@ -36,16 +24,13 @@ public class BlackList {
         }
         return false;
     }
+
+//Need to add a keywords check, can comment out the url constraint if no longer needed or get program to check both simultaneously.
+
+
 }
 
-//    private static boolean checkBlackList(String originalURL) throws BlackListedUrlException {
-//        for (String substring:blackList) {
-//            if (originalURL.contains(substring)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+
 
 
 
