@@ -5,6 +5,7 @@ import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
@@ -16,19 +17,16 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class UrlService {
 
+    @Autowired
+    private RepositoryUrl repositoryUrl;  // creating object of RepositoryUrl class
 
-    private BountyUrlTable bountyUrlTable;
-    private final RepositoryUrl repositoryUrl;    // creating object of RepositoryUrl class
 
-
-    @Autowired      // used on properties, setters and constructors.
+        // used on properties, setters and constructors.
     // Autowires relationships between collaborating beans. Injects dependencies into a class.
-    public UrlService(RepositoryUrl repositoryUrl) {
 
-        this.repositoryUrl = repositoryUrl;
-    }
 
     // Read or search all fields.
 

@@ -2,23 +2,30 @@ package com.zinkworks.bountyhuntersurlshortener.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 // @entity and @table creates the table in the database - 'bounty_url_table'.
 @Entity
-@Table
+@Table(name = "bounty_url_table")
+@Builder
 public class BountyUrlTable {       // renamed class name
 
 
     // Declares primary key for ID column. Generates a sequence of id's for each url.
     @Id
+    @Column
     @SequenceGenerator(name="url_id_sequence", sequenceName = "url_id_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_id_sequence")
     private Long id;
+    @Column
     private String originalUrl;     // renamed properties without underscore (_)
+    @Column
     private String shortUrl;
+    @Column
+    @CreationTimestamp
     private LocalDateTime createdDate;
 
     // constructor

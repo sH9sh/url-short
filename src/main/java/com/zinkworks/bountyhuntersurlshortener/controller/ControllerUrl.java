@@ -4,6 +4,7 @@ package com.zinkworks.bountyhuntersurlshortener.controller;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
+import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import com.zinkworks.bountyhuntersurlshortener.service.UrlService;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,19 +24,19 @@ public class ControllerUrl {
 
 
     //Variable declaration from ServiceUrl
-    private final UrlService urlService;
-    private final RepositoryUrl repositoryUrl;
-
-
     @Autowired
-//Constructor class
-    public ControllerUrl(UrlService urlService, RepositoryUrl repositoryUrl) {
-        this.urlService = urlService;
-        this.repositoryUrl = repositoryUrl;
+    private UrlService urlService;
+    private RepositoryUrl repositoryUrl;
+
+
+
+    @GetMapping
+    public List<BountyUrlTable> getAllUrls(){
+        return urlService.getAllUrlInfo();
     }
 
 
-
+    //Constructor class
     @GetMapping("{short_url}")
 
 //ResponseEntity<String> is class that represent an HTTP response, In here Type of content is String
