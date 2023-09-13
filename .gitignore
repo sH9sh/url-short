@@ -48,8 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
-# .env files
-*.env
+secrets.properties
+
+
 
 # environment variables
 secrets.properties
