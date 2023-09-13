@@ -10,7 +10,7 @@ public class BlackList {
 
 public static boolean checkBlackList(String originalURL) throws FileNotFoundException{
     List<String> blackList = new ArrayList<>();
-    Scanner scnr = new Scanner(new FileReader("keywordsForBlacklist.txt"));
+    Scanner scnr = new Scanner(new FileReader("src/main/resources/keywordsForBlacklist.txt"));
     String str;
     while (scnr.hasNext()) {
         str = scnr.next();
