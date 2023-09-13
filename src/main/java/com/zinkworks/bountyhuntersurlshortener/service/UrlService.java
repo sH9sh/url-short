@@ -47,7 +47,7 @@ public class UrlService {
         String createdShortUrl = "";
         if (UrlValiditation.isValid(originalUrl)) {
             if (blackList) {
-                throw new BlackListedUrlException("The url you entered is on our blacklist.");
+                throw new BlackListedUrlException("The URL entered contains banned keywords, please try again");
             }
             else{
                 createdShortUrl = UriComponentsBuilder.fromHttpUrl(originalUrl)
