@@ -17,8 +17,8 @@ public class BountyUrlTable {       // renamed class name
     // Declares primary key for ID column. Generates a sequence of id's for each url.
     @Id
     @Column
-    @SequenceGenerator(name="url_id_sequence", sequenceName = "url_id_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_id_sequence")
+    @SequenceGenerator(name="url_id_sequence", sequenceName = "url_id_sequence", allocationSize = 1, initialValue = 2)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "url_id_sequence")
     private Long id;
     @Column
     private String originalUrl;     // renamed properties without underscore (_)

@@ -53,21 +53,11 @@ public class UrlService {
 
                 createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
 
-                LocalDateTime createdDate = LocalDateTime.now();
-
                 BountyUrlTable newRecord = new BountyUrlTable();
                 newRecord.setShortUrl(createdShortUrl);
                 newRecord.setOriginalUrl(originalUrl);
-                newRecord.setCreatedDate(createdDate);
-                // Validate url
-                // if url is valid, check black list.
-                // if its not blacklisted, run Md5Hash
 
 
-//        Optional<BountyUrlTable> shortenedUrl = repositoryUrl.findByShortUrl(bountyUrlTable.getShortUrl());
-//        if (shortenedUrl.isPresent()) {
-//            throw new IllegalStateException("short url already in use");
-//        }
                 repositoryUrl.save(newRecord);
             }
         }
@@ -76,7 +66,7 @@ public class UrlService {
         }
         return createdShortUrl;
     }
-// hello
+
 
     // READ
     public String findOriginalUrl(String shortUrl) throws UrlNotFoundException {
