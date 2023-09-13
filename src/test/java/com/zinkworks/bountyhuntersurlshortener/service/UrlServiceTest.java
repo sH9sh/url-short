@@ -1,6 +1,8 @@
 package com.zinkworks.bountyhuntersurlshortener.service;
 
 import com.zinkworks.bountyhuntersurlshortener.controller.ControllerUrl;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
+import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
@@ -19,6 +21,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,6 +64,16 @@ class UrlServiceTest {
         assertThat(urlList).isNotNull();
 
         assertThat(urlList.size()).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("Testing to see if a short url is created ")
+    void createNewShortUrl() throws MalformedURLException, BlackListedUrlException, FileNotFoundException, InvalidUrlException {
+        when(urlService.addNewUrl("https://www.youtube.com/"))
+                .thenReturn("0xE0O6P");
+
+
 
     }
 
