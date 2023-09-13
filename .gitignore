@@ -48,3 +48,5 @@ Thumbs.db
 *.mov
 *.wmv
 
+#Text Files
+keywordsForBlacklist.txt
