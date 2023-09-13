@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface RepositoryUrl extends JpaRepository<BountyUrlTable, Long> {
-    @Query(value = "SELECT * FROM bountyurltable WHERE short_url = :shortUrl", nativeQuery = true)
+    @Query(value = "SELECT * FROM bounty_url_table WHERE short_url = :shortUrl", nativeQuery = true)
     Optional<BountyUrlTable> findByShortUrl(String shortUrl);
 
 

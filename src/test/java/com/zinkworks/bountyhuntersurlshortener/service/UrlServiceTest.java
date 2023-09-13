@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class UrlServiceTest {
 
-    @Autowired
+    @InjectMocks
     private RepositoryUrl repositoryUrl;
 
     private UrlService urlService;
@@ -38,9 +38,6 @@ class UrlServiceTest {
 
 
     @Test
-
-
-
     @DisplayName("Testing for expected value")
     void canFindOriginalUrlByShortUrl() throws UrlNotFoundException {
 
@@ -53,12 +50,6 @@ class UrlServiceTest {
     @DisplayName("Testing for all Urls")
 
     void getAllUrlsTest(){
-        BountyUrlTable testTable = BountyUrlTable.builder()
-                .originalUrl("https://www.youtube.com/watch?v=SDwqcFwvwY0")
-                .shortUrl("HuuMy3K")
-                .build();
-
-        repositoryUrl.save(testTable);
 
         List<BountyUrlTable> urlList = repositoryUrl.findAll();
 
