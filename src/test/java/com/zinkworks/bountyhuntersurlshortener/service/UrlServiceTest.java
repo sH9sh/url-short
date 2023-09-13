@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -25,26 +26,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 
-@ExtendWith(MockitoExtension.class)
+
+@SpringBootTest
 class UrlServiceTest {
 
-    @InjectMocks
-    UrlService urlService;
     @Autowired
     private RepositoryUrl repositoryUrl;
 
+    private UrlService urlService;
 
 
-//    @Test
-//    void canFindOriginalUrlByShortUrl() throws UrlNotFoundException {
-//
-//        when(urlService.findOriginalUrl("HuuMy3K"))
-//                .thenReturn("https://www.youtube.com/watch?v=SDwqcFwvwY0");
-//
-//    }
 
     @Test
+<<<<<<< HEAD
     @DisplayName("testing expected value")
+=======
+    @DisplayName("Testing for expected value")
+    void canFindOriginalUrlByShortUrl() throws UrlNotFoundException {
+
+        when(urlService.findOriginalUrl("HuuMy3K"))
+                .thenReturn("https://www.youtube.com/watch?v=SDwqcFwvwY0");
+
+    }
+
+    @Test
+    @DisplayName("Testing for all Urls")
+>>>>>>> 247b66c672ac04c1c8e324df0afeac1d32a5b04b
     void getAllUrlsTest(){
         BountyUrlTable testTable = BountyUrlTable.builder()
                 .originalUrl("https://www.youtube.com/watch?v=SDwqcFwvwY0")
