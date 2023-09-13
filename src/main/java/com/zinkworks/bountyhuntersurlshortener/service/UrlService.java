@@ -37,35 +37,35 @@ public class UrlService {
 
     // Create
     // Add a new short URL. MD5 conversion will go here (I think)
-    public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException {
-
-        boolean blackList = BlackList.checkBlackList(originalUrl);
-        String createdShortUrl = "";
-        if (UrlValiditation.isValid(originalUrl)) {
-            if (blackList) {
-                throw new BlackListedUrlException("The url you entered is on our blacklist.");
-            }
-            else{
-                createdShortUrl = UriComponentsBuilder.fromHttpUrl(originalUrl)
-                        .replaceQuery(null)
-                        .build()
-                        .toUriString();
-
-                createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
-
-                BountyUrlTable newRecord = new BountyUrlTable();
-                newRecord.setShortUrl(createdShortUrl);
-                newRecord.setOriginalUrl(originalUrl);
-
-
-                repositoryUrl.save(newRecord);
-            }
-        }
-        else{
-            throw new InvalidUrlException("The url you entered is invalid");
-        }
-        return createdShortUrl;
-    }
+//    public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException {
+//
+//        boolean blackList = BlackList.checkBlackList(originalUrl);
+//        String createdShortUrl = "";
+//        if (UrlValiditation.isValid(originalUrl)) {
+//            if (blackList) {
+//                throw new BlackListedUrlException("The url you entered is on our blacklist.");
+//            }
+//            else{
+//                createdShortUrl = UriComponentsBuilder.fromHttpUrl(originalUrl)
+//                        .replaceQuery(null)
+//                        .build()
+//                        .toUriString();
+//
+//                createdShortUrl = MD5Hash.MD5HashingMethod(originalUrl);
+//
+//                BountyUrlTable newRecord = new BountyUrlTable();
+//                newRecord.setShortUrl(createdShortUrl);
+//                newRecord.setOriginalUrl(originalUrl);
+//
+//
+//                repositoryUrl.save(newRecord);
+//            }
+//        }
+//        else{
+//            throw new InvalidUrlException("The url you entered is invalid");
+//        }
+//        return createdShortUrl;
+//    }
 
 
     // READ

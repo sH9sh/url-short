@@ -58,27 +58,27 @@ public class ControllerUrl {
         }
 
     }
-    @PostMapping
-//To send Original URL to server for the creating shorten URL
-    public ResponseEntity<String> createShortUrl(@RequestBody String original_url ) throws MalformedURLException, BlackListedUrlException, InvalidUrlException {
-
-//Got the created Shorten URL from server
-        String shortUrl = urlService.addNewUrl(original_url);
-
-        if(shortUrl.isEmpty()){
-//Failed created shorten URL
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Shorten URL not created");
-        }
-
-
-        else {
-//View the Created shorten URL
-            return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);
-        }
-
-
-
-    }
+//    @PostMapping
+////To send Original URL to server for the creating shorten URL
+//    public ResponseEntity<String> createShortUrl(@RequestBody String original_url ) throws MalformedURLException, BlackListedUrlException, InvalidUrlException {
+//
+////Got the created Shorten URL from server
+//        String shortUrl = urlService.addNewUrl(original_url);
+//
+//        if(shortUrl.isEmpty()){
+////Failed created shorten URL
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Shorten URL not created");
+//        }
+//
+//
+//        else {
+////View the Created shorten URL
+//            return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);
+//        }
+//
+//
+//
+//    }
 
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

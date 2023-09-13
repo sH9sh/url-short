@@ -1,5 +1,6 @@
 package com.zinkworks.bountyhuntersurlshortener.service;
 
+import com.zinkworks.bountyhuntersurlshortener.controller.ControllerUrl;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
@@ -31,8 +32,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UrlServiceTest {
 
     @InjectMocks
+    private ControllerUrl controllerUrl;
+    @Mock
     private RepositoryUrl repositoryUrl;
 
+    @Mock
     private UrlService urlService;
 
 
