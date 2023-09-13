@@ -51,10 +51,7 @@ Thumbs.db
 
 
 #Login stuff
-
 secrets.properties
-
-
-
-
+#Text Files
+keywordsForBlacklist.txt
 
