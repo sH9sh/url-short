@@ -38,9 +38,9 @@ class UrlServiceTest {
 
 
     @Test
-<<<<<<< HEAD
-    @DisplayName("testing expected value")
-=======
+
+
+
     @DisplayName("Testing for expected value")
     void canFindOriginalUrlByShortUrl() throws UrlNotFoundException {
 
@@ -51,7 +51,7 @@ class UrlServiceTest {
 
     @Test
     @DisplayName("Testing for all Urls")
->>>>>>> 247b66c672ac04c1c8e324df0afeac1d32a5b04b
+
     void getAllUrlsTest(){
         BountyUrlTable testTable = BountyUrlTable.builder()
                 .originalUrl("https://www.youtube.com/watch?v=SDwqcFwvwY0")
