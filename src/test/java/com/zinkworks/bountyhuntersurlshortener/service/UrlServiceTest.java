@@ -53,12 +53,6 @@ class UrlServiceTest {
     @DisplayName("Testing for all Urls")
 
     void getAllUrlsTest(){
-        BountyUrlTable testTable = BountyUrlTable.builder()
-                .originalUrl("https://www.youtube.com/watch?v=SDwqcFwvwY0")
-                .shortUrl("HuuMy3K")
-                .build();
-
-        repositoryUrl.save(testTable);
 
         List<BountyUrlTable> urlList = repositoryUrl.findAll();
 
