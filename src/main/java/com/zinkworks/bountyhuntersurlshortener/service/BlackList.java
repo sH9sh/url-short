@@ -28,7 +28,7 @@ public class BlackList {
 //Need to add a keywords check, can comment out the url constraint if no longer needed or get program to check both simultaneously.
 public static boolean checkBlackList(String originalURL) throws FileNotFoundException{
     List<String> blackList = new ArrayList<>();
-    Scanner scnr = new Scanner(new FileReader("urls.txt"));
+    Scanner scnr = new Scanner(new FileReader("keywordsForBlacklist.txt"));
     String str;
     while (scnr.hasNext()) {
         str = scnr.next();
