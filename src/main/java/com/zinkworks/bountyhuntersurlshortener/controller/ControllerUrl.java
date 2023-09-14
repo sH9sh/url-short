@@ -38,7 +38,7 @@ public class ControllerUrl {
 
 
     //Constructor class
-    @GetMapping("{short_url}")
+    @GetMapping("{shortUrl}")
 //ResponseEntity<String> is class that represent an HTTP response, In here Type of content is String
 //GET Method for retrieve information from a server.
     public ResponseEntity<String> getOriginalUrl(@PathVariable String shortUrl) throws UrlNotFoundException {
