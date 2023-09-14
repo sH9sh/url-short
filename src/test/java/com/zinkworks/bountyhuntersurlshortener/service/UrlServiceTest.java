@@ -50,7 +50,6 @@ class UrlServiceTest {
 
         when(urlService.findOriginalUrl("HuuMy3K"))
                 .thenReturn("https://www.youtube.com/watch?v=SDwqcFwvwY0");
-
     }
 
     @Test
