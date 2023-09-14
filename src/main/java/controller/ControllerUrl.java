@@ -1,7 +1,5 @@
 package controller;
 
-import com.zinkworks.bountyhuntersurlshortener.model.RepositoryUrl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ public class ControllerUrl {
     private final UrlService urlService;
     private final RepositoryUrl repositoryUrl;
 
-    
+
     public ControllerUrl(UrlService urlService, RepositoryUrl repositoryUrl) {
         this.repositoryUrl = repositoryUrl;
         this.urlService = serviceUrl;
