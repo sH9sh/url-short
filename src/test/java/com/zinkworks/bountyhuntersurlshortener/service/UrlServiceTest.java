@@ -35,8 +35,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class UrlServiceTest {
 
-    @InjectMocks
-    private ControllerUrl controllerUrl;
+
     @Mock
     private RepositoryUrl repositoryUrl;
 
