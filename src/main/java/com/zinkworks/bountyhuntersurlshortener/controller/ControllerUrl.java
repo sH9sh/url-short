@@ -1,4 +1,4 @@
-package controller;
+package com.zinkworks.bountyhuntersurlshortener.controller;
 
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
