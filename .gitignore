@@ -48,3 +48,10 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+
+#Login stuff
+secrets.properties
+#Text Files
+keywordsForBlacklist.txt
+
