@@ -1,9 +1,5 @@
 package com.zinkworks.bountyhuntersurlshortener.service;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> serviceTests
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
