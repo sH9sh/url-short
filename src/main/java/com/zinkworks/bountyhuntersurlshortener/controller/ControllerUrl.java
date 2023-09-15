@@ -1,4 +1,4 @@
-package controller;
+package com.zinkworks.bountyhuntersurlshortener.controller;
 
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
@@ -28,7 +28,9 @@ public class ControllerUrl {
     @GetMapping("{short_url}")    //GET Method for retrieve information from a server.
     public ResponseEntity<String> getOriginalUrl(@PathVariable String short_url) throws UrlNotFoundException {
 
+
         String originalUrl = urlService.findOriginalUrl(short_url);
+
         if (originalUrl != null) {
             return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build();
         }
