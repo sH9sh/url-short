@@ -3,18 +3,16 @@ package com.zinkworks.bountyhuntersurlshortener.service;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
-import lombok.RequiredArgsConstructor;
 import com.zinkworks.bountyhuntersurlshortener.model.BountyUrlTable;
 import com.zinkworks.bountyhuntersurlshortener.repository.RepositoryUrl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
-import java.time.LocalDateTime;
 import java.util.List;
-
-import static com.zinkworks.bountyhuntersurlshortener.service.BlackList.checkBlackList;
 
 
 @Service
@@ -45,7 +43,7 @@ public class UrlService {
         String createdShortUrl = "";
         if (UrlValiditation.isValid(originalUrl)) {
             if (blackList) {
-                throw new BlackListedUrlException("The url you entered is on our blacklist.");
+                throw new BlackListedUrlException("The url you entered has keywords on our blacklist. Please try again.");
             } else {
                 createdShortUrl = UriComponentsBuilder.fromHttpUrl(originalUrl)
                         .replaceQuery(null)
