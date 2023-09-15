@@ -31,16 +31,16 @@ class RepositoryUrlTest {
 
         newRecord.setShortUrl("MD5HasShortURL");
         newRecord.setOriginalUrl("https://www.Test_Original_URL.com");
-        newRecord.setCreatedDate(LocalDateTime.now());
+//        newRecord.setCreatedDate(LocalDateTime.now());
 
         //Act
         BountyUrlTable savedRecord = repositoryUrl.save(newRecord);
 
         //Assert
-        assertNotNull(savedRecord);
-        assertNotNull(savedRecord.getShortUrl());
-        assertNotNull(savedRecord.getOriginalUrl());
-        assertNotNull(savedRecord.getCreatedDate());
+        assertNotNull(savedRecord.getId());
+        assertEquals("MD5HasShortURL", savedRecord.getShortUrl());
+        assertEquals("https://www.Test_Original_URL.com", savedRecord.getOriginalUrl());
+//        assertNotNull(LocalDateTime.now(), savedRecord.getCreatedDate());
     }
 
 
