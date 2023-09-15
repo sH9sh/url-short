@@ -43,7 +43,8 @@ public class ControllerUrl {
         String originalUrl = urlService.findOriginalUrl(shortUrl);
         if (originalUrl != null) {
             //Retrieve Original URL from server
-            return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build();
+           // return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(originalUrl)).build();
+            return ResponseEntity.ok(originalUrl);
         } else {
             //Build Error Message
             return ResponseEntity.notFound().build();
