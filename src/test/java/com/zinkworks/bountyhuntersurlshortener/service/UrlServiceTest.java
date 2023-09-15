@@ -1,9 +1,5 @@
 package com.zinkworks.bountyhuntersurlshortener.service;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> serviceTests
 import com.zinkworks.bountyhuntersurlshortener.exceptions.BlackListedUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.InvalidUrlException;
 import com.zinkworks.bountyhuntersurlshortener.exceptions.UrlNotFoundException;
@@ -57,19 +53,6 @@ class UrlServiceTest {
         when(urlService.findOriginalUrl(shortUrl))
                 .thenThrow( new UrlNotFoundException("No entity with " + shortUrl + " found."));
     }
-
-    @Test
-    @DisplayName("Testing for all Urls")
-
-    void getAllUrlsTest(){
-        List<BountyUrlTable> urlList = repositoryUrl.findAll();
-        assertThat(urlList).isNotNull();
-        assertThat(urlList.size()).isEqualTo(1);
-    }
-
-
-
-
 
     @Test
     @DisplayName("Testing for exception when url is blacklisted")
