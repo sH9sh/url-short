@@ -21,9 +21,10 @@ public class UrlService {
 
     @Autowired
     private RepositoryUrl repositoryUrl;  // creating object of RepositoryUrl class
-    public List<BountyUrlTable> getAllUrlInfo() {
-        return repositoryUrl.findAll();    // returns all database info from the repository class.
-    }
+
+//    public List<BountyUrlTable> getAllUrlInfo() {
+//        return repositoryUrl.findAll();    // returns all database info from the repository class.
+//    }
 
     public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException, FileNotFoundException {
         boolean blackList = BlackList.checkBlackList(originalUrl);

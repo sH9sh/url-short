@@ -28,13 +28,14 @@ public class ControllerUrl {
     //Variable declaration from ServiceUrl
     @Autowired
     private UrlService urlService;
+    @Autowired
     private RepositoryUrl repositoryUrl;
 
 
-    @GetMapping
-    public List<BountyUrlTable> getAllUrls() {
-        return urlService.getAllUrlInfo();
-    }
+//    @GetMapping
+//    public List<BountyUrlTable> getAllUrls() {
+//        return urlService.getAllUrlInfo();
+//    }
 
 
     //Constructor class

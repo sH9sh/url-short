@@ -55,19 +55,6 @@ class UrlServiceTest {
     }
 
     @Test
-    @DisplayName("Testing for all Urls")
-
-    void getAllUrlsTest(){
-        List<BountyUrlTable> urlList = repositoryUrl.findAll();
-        assertThat(urlList).isNotNull();
-        assertThat(urlList.size()).isEqualTo(1);
-    }
-
-
-
-
-
-    @Test
     @DisplayName("Testing for exception when url is blacklisted")
     void createNewShortUrlBlacklistedUrl() throws MalformedURLException, BlackListedUrlException, FileNotFoundException, InvalidUrlException {
         when(urlService.addNewUrl("https://www.cunt.com/"))
