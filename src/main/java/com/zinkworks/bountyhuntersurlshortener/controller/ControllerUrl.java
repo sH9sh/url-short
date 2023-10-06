@@ -68,9 +68,31 @@ public class ControllerUrl {
         }
     }
 
-    @DeleteMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUrlById(@PathVariable("id") Long id){
-        repositoryUrl.deleteById(id);
+//    @DeleteMapping(path = "/{id}")
+//@DeleteMapping(path = "/{short_url}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//   public void deleteUrlById(@PathVariable("id") Long id){
+//
+//    repositoryUrl.deleteById(id);
+//
+//   }
+
+    @DeleteMapping("{short_url}")
+    public ResponseEntity<String> deleteShortUrl(@PathVariable String short_url) {
+
+        //The URL to delete passed to server and got the responses.
+        boolean deleted = urlService.deleteUrl(short_url);
+
+
+        if (deleted) {
+            //Delete successful completed.
+            return ResponseEntity.ok("Short URL deleted");
+
+        } else {
+            //Build error message
+            return ResponseEntity.notFound().build();
+
+        }
+
     }
 }
