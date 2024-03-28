@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path:
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql:///postgres
+    username: postgres
+    password: spoon
+    hikari:
+      data-source-properties:
+        socketFactory: com.google.cloud.sql.postgres.SocketFactory
+        cloudSqlInstance: url-shortener-417915:europe-west4:mypostgres
+        ipTypes: PUBLIC,PRIVATE
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
