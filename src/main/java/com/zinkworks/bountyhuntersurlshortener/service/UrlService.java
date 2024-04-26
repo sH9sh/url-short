@@ -26,7 +26,8 @@ public class UrlService {
     }
 
     public String addNewUrl(String originalUrl) throws InvalidUrlException, MalformedURLException, BlackListedUrlException, FileNotFoundException {
-        boolean blackList = BlackList.checkBlackList(originalUrl);
+//        boolean blackList = BlackList.checkBlackList(originalUrl);
+        boolean blackList = false;
         String createdShortUrl = "";
         if (UrlValiditation.isValid(originalUrl)) {
             if (blackList) {
