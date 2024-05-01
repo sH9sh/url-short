@@ -35,7 +35,7 @@ public class BountyUrlTable {       // renamed class name
         this.shortUrl = shortUrl;
         this.createdDate = createdDate;
     }
-    //push to gcp again
+    //push to gcp again please
     // no arguments constructor
     public BountyUrlTable() {
     }
