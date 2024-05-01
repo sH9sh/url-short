@@ -2,6 +2,7 @@ package com.zinkworks.bountyhuntersurlshortener.service;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

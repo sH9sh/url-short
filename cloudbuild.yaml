@@ -3,13 +3,13 @@ steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
 
-    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/$_BINARY_NAME:$COMMIT_SHA', '.']
 
   # Push the container image to Container Registry
 
   - name: 'gcr.io/cloud-builders/docker'
 
-    args: ['push', 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$_PROJECT_ID/$_BINARY_NAME:$COMMIT_SHA']
 
   # Deploy container image to Cloud Run
 
