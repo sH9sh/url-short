@@ -19,21 +19,21 @@ steps:
 
     args:
 
-  - 'run'
+    - 'run'
 
-  - 'deploy'
+    - 'deploy'
 
-  - 'urlservice'
+    - 'urlservice'
 
-  - '--image'
+    - '--image'
 
-  - 'gcr.io/$_PROJECT_ID/$_BINARY_NAME:$COMMIT_SHA'
+    - 'gcr.io/$_PROJECT_ID/$_BINARY_NAME:$COMMIT_SHA'
 
-  - '--region'
+    - '--region'
 
-  - '$_REGION'
+    - '$_REGION'
 
-  - '--allow-unauthenticated'
+    - '--allow-unauthenticated'
 
 images:
 
