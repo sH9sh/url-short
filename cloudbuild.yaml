@@ -37,4 +37,4 @@ steps:
 
 images:
 
-  - 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA'
+  - 'gcr.io/$_PROJECT_ID/urlservice/$COMMIT_SHA'
