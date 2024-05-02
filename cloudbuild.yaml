@@ -34,7 +34,8 @@ steps:
     - '$_REGION'
 
     - '--allow-unauthenticated'
-    - 'PORT=8080'
+
+    - '--port=8080'
 
 images:
 
