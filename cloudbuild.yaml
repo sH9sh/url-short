@@ -35,8 +35,7 @@ steps:
 
     - '--allow-unauthenticated'
 
-    - '--set-env'
-
+    - '--set-env-vars'
     - 'PORT=8080'
 
 
