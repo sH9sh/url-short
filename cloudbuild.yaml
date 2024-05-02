@@ -35,6 +35,10 @@ steps:
 
     - '--allow-unauthenticated'
 
+    - '--set-env'
+
+    - 'PORT=8080'
+
 
 images:
 
