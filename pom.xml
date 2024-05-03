@@ -34,6 +34,11 @@
 			<version>1.15.2</version>
 		</dependency>
 		<dependency>
+			<groupId>com.google.cloud.sql</groupId>
+			<artifactId>cloud-sql-connector-jdbc-sqlserver</artifactId>
+			<version>1.18.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.google.api-client</groupId>
 			<artifactId>google-api-client</artifactId>
 			<version>1.32.1</version>
