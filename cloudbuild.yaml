@@ -35,7 +35,7 @@ steps:
 
     - '--allow-unauthenticated'
 
-    serviceAccount: 'projects/working-url-short/serviceAccounts/url-please-work-service@working-url-short.iam.gserviceaccount.com'
+serviceAccount: 'projects/working-url-short/serviceAccounts/url-please-work-service@working-url-short.iam.gserviceaccount.com'
 
 
 images:
