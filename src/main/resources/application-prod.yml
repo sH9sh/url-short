@@ -11,7 +11,7 @@ spring:
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: url-shortener-421308:europe-west2:p0stgres-url
+        cloudSqlInstance: url-shortener-421308:us-central1:postgres-url
 
   jpa:
     hibernate:
