@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BlackList {
-// comment more l hello b k g a b zs as ddd
+// comment more l hello b k g a b zs as ddd a
     public static boolean checkBlackList(String originalURL) throws FileNotFoundException {
         List<String> blackList = new ArrayList<>();
         // Load the file from the classpath
