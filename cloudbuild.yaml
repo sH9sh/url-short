@@ -3,13 +3,13 @@ steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
 
-    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA', '.']
 
   # Push the container image to Container Registry
 
   - name: 'gcr.io/cloud-builders/docker'
 
-    args: ['push', 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA']
 
   # Deploy container image to Cloud Run
 
@@ -23,11 +23,11 @@ steps:
 
     - 'deploy'
 
-    - 'urlservice'
+    - 'url-cloud-run'
 
     - '--image'
 
-    - 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA'
+    - 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA'
 
     - '--region'
 
@@ -35,9 +35,9 @@ steps:
 
     - '--allow-unauthenticated'
 
-serviceAccount: 'projects/working-url-short/serviceAccounts/url-please-work-service@working-url-short.iam.gserviceaccount.com'
+
 
 
 images:
 
-  - 'gcr.io/$_PROJECT_ID/urlservice:$COMMIT_SHA'
+  - 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA'

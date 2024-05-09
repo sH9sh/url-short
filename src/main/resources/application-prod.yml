@@ -1,4 +1,5 @@
 server:
+  port: 8080
   servlet:
     context-path:
 
@@ -11,7 +12,7 @@ spring:
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: working-url-short:us-central1:postgres-url
+        cloudSqlInstance: new-url-project-422810:us-central1:url-postgres
 
   jpa:
     hibernate:
