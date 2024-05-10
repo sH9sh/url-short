@@ -42,5 +42,3 @@ images:
 
   - 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA'
 
-options:
-  logging: CLOUD_LOGGING_ONLY
