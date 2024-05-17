@@ -3,8 +3,9 @@ This is a URL shortening application that can be deployed on Google Cloud Platfo
 
 To use the application, please have Postman installed.
 
-1. Open Postman, create Post request and enter [http://localhost:8080/api/v1/BountyURL]
-2. In the body, select raw and enter your URL.
+1. Run application.
+2. Open Postman, create Post request and enter <u>http://localhost:8080/api/v1/BountyURL</u>
+3. In the body, select raw and enter your URL.
 
 <b>To deploy on Google Cloud Platform</b>
 
