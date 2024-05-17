@@ -12,7 +12,8 @@ spring:
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: new-url-project-422810:us-central1:url-postgres
+        cloudSqlInstance: elite-rider-423610-u4:us-central1:postgres-url
+
 
   jpa:
     hibernate:
