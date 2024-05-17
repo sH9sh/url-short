@@ -3,7 +3,7 @@ steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
 
-    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/new-cloudrun:$COMMIT_SHA', '.']
 
   # Push the container image to Container Registry
 
@@ -23,11 +23,11 @@ steps:
 
     - 'deploy'
 
-    - 'url-cloud-run'
+    - 'new-cloudrun'
 
     - '--image'
 
-    - 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA'
+    - 'gcr.io/$_PROJECT_ID/new-cloudrun:$COMMIT_SHA'
 
     - '--region'
 
@@ -40,7 +40,7 @@ steps:
 
 images:
 
-  - 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA'
+  - 'gcr.io/$_PROJECT_ID/new-cloudrun:$COMMIT_SHA'
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
