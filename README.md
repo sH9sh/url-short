@@ -16,6 +16,7 @@ To use the application, please have Postman installed.
 6. Add roles to IAM account: Cloud Run Admin, Cloud SQL Admin, Cloud SQL Client, Cloud Build Connection Admin.
 7. Ensure these are also enabled in Cloud Build Settings.
 8. Make a change and push to your repository.
+9. Follow steps for using application above but replace 'http://localhost:8080' with generated Cloud Run URL.
 
 <b>Noted Issues</b>
 
