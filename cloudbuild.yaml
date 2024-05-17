@@ -42,3 +42,5 @@ images:
 
   - 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA'
 
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
