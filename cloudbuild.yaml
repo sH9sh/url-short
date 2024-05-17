@@ -9,7 +9,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
 
-    args: ['push', 'gcr.io/$_PROJECT_ID/url-cloud-run:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$_PROJECT_ID/new-cloudrun:$COMMIT_SHA']
 
   # Deploy container image to Cloud Run
 
